@@ -1,0 +1,31 @@
+---
+import steven from "@/assets/avatar.jpeg";
+import Heading from "./ui/Heading.astro";
+
+//data
+const links = [
+  {
+    href: "/katie-haus-cv.pdf",
+    name: "Download CV",
+  },
+  {
+    href: "#connect",
+    name: "Let's Connect",
+  },
+];
+---
+
+<section aria-lable="Hero section" class="hero">
+  <img src={steven.src} alt="Steven Wong" />
+  <Heading tagName="h1" tagSize="h2">👋 Hi, I'm Steven</Heading>
+  <p>I'm a self-taught designer and developer obsessed with quality.</p>
+  <div class="columns">
+    {
+      links.map((l) => (
+        <a href={l.href} class="link">
+          {l.name}
+        </a>
+      ))
+    }
+  </div>
+</section>
