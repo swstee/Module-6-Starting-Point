@@ -1,30 +1,53 @@
 ---
 import steven from "@/assets/avatar.jpeg";
 import Heading from "./ui/Heading.astro";
+import Link, { type LinkProps } from "./ui/Link.astro";
+
+interface Link extends LinkProps {
+  name: string;
+}
+
+type Props = {
+  title?: string;
+  content?: string;
+  links?: Link[];
+};
 
 //data
-const links = [
-  {
-    href: "/katie-haus-cv.pdf",
-    name: "Download CV",
-  },
-  {
-    href: "#connect",
-    name: "Let's Connect",
-  },
-];
+const defaultContent = {
+  title: "👋 Hi, I'm Steven",
+  content: "I'm a self-taught designer and developer obsessed with quality.",
+  links: [
+    {
+      href: "/katie-haus-cv.pdf",
+      name: "Download CV",
+      variant: "secondary",
+    },
+    {
+      href: "#connect",
+      name: "Let's Connect",
+      variant: "primary",
+    },
+  ],
+};
+
+const {
+  title = defaultContent.title,
+  content = defaultContent.content,
+  links = defaultContent.links,
+} = Astro.props;
 ---
 
 <section aria-lable="Hero section" class="hero">
   <img src={steven.src} alt="Steven Wong" />
-  <Heading tagName="h1" tagSize="h2">👋 Hi, I'm Steven</Heading>
-  <p>I'm a self-taught designer and developer obsessed with quality.</p>
+  <Heading tagName="h1" tagSize="h2">{title}</Heading>
+  <p>{content}</p>
   <div class="columns">
     {
       links.map((l) => (
-        <a href={l.href} class="link">
+        <Link href={l.href} variant={l.variant}>
           {l.name}
-        </a>
+        </Link>
       ))
     }
   </div>
