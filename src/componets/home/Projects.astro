@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "../ProjectCard.astro";
+
+const projects = await getCollection("projects");
+
+type Props = {
+  limit?: number;
+};
+
+const { limit } = Astro.props;
+---
+
+<div class="grid-wrapper">
+  {
+    limit
+      ? projects
+          .slice(0, limit)
+          .map((project) => <ProjectCard project={project} />)
+      : projects.map((project) => <ProjectCard project={project} />)
+  }
+</div>

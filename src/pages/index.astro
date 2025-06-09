@@ -1,7 +1,19 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+
+import Hero from "@/componets/Hero.astro";
+import Features from "@/componets/home/Features.astro";
+import Projects from "@/componets/home/Projects.astro";
+import Heading from "@/componets/ui/Heading.astro";
 ---
 
 <Layout>
   <Hero />
+  <Features />
+  <section aria-labelledby="recent-projects" class="container rows">
+    <Heading tagName="h2" tagSize="h2" id="recent-projects"
+      >Recent Projects
+    </Heading>
+    <Projects limit={3} />
+  </section>
 </Layout>
